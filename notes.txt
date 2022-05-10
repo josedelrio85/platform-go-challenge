@@ -1,0 +1,56 @@
+curl --request GET 'http://localhost:4567/user/1/fav/list'
+
+curl --request GET 'http://localhost:4567/user/a04c6d0e-0115-4931-9911-35d5fe61983e/fav/list' # ok
+
+curl --request GET 'http://localhost:4567/user/a04c6d0e01154931991135d5fe61983e/fav/list'  # not found
+
+
+curl --request POST 'http://localhost:4567/user/a04c6d0e-0115-4931-9911-35d5fe61983e/fav/add' \
+-d '{
+  "type": "chart",
+  "chart": {
+    "id": "67c9de5d-6a6d-47c6-b7a7-230c3f94b481",
+    "title": "foobar",
+    "axis_y_title": "foo",
+    "axis_x_title": "bar"
+  }
+}'
+
+curl --request POST 'http://localhost:4567/user/a04c6d0e-0115-4931-9911-35d5fe61983e/fav/add' \
+-d '{
+  "type": "insight",
+  "insight": {
+    "id": "ddb4f8d3-2c47-46f5-a014-e73aea4eb8a1",
+    "description": "foobar"
+  }
+}'
+
+curl --request POST 'http://localhost:4567/user/a04c6d0e-0115-4931-9911-35d5fe61983e/fav/add' \
+-d '{
+  "type": "audience",
+  "audience": {
+    "id": "a85b8a66-15f4-49be-a0a0-90df6ce2b79f",
+    "gender": "foobar",
+    "born_country": "foo",
+    "age_group": "bar",
+    "daily_hours_social_media": "foo",
+    "purchases_last_month": "bar"
+  }
+}'
+
+
+curl --request PUT 'http://localhost:4567/user/a04c6d0e-0115-4931-9911-35d5fe61983e/fav/edit' \
+-d '{
+  "type": "audience",
+  "audience": {
+    "id": "a85b8a66-15f4-49be-a0a0-90df6ce2b79f",
+    "gender": "updated",
+    "born_country": "foo_updated",
+    "age_group": "bar_updated",
+    "daily_hours_social_media": "foo_updated",
+    "purchases_last_month": "bar_updated"
+  }
+}'
+
+
+curl -s --request GET 'http://localhost:4567/user/e6848ec7-bb7f-4141-a26d-66d9f88ee915/fav/list'
